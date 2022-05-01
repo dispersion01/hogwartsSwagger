@@ -33,7 +33,7 @@ public class FacultyService {
         return facultyMap.remove(id);
     }
 
-    public Faculty colorFaculty(String color) {
-        return facultyMap.get(facultyMap.containsValue(color));
+    public Collection<Faculty> colorFaculty(String color) {
+        return facultyMap.values();
     }
 }
