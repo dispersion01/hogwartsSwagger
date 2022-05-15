@@ -1,5 +1,6 @@
 package ru.hogwarts.school.service;
 
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.http.HttpHeaders;
 import org.springframework.http.HttpStatus;
@@ -30,14 +31,14 @@ public class AvatarService {
 
     private final AvatarRepository avatarRepository;
     private final StudentRepository studentRepository;
-
+@Autowired
     public AvatarService( AvatarRepository avatarRepository, StudentRepository studentRepository) {
         this.avatarRepository = avatarRepository;
         this.studentRepository = studentRepository;
     }
 
-    public Avatar findAvatar(Long id) {
-        return avatarRepository.findByStudent_Id(id);
+    public Avatar findAvatar(Long studentId) {
+        return avatarRepository.findByStudentId(studentId);
     }
     public void uploadAvatar(Long studentId, MultipartFile avatarFile) throws IOException {
         Student student = studentRepository.getById(studentId);

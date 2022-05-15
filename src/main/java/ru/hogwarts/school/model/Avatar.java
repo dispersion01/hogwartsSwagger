@@ -8,14 +8,14 @@ import java.util.Objects;
 public class Avatar {
     @Id
     @GeneratedValue
-    Long id;
-    String filePath; //путь файла на диске, где сохраняется оригинал документа
-    long fileSize; // размер файла
-    String mediaType; //тип файла
+    private Long id;
+    private String filePath; //путь файла на диске, где сохраняется оригинал документа
+    private long fileSize; // размер файла
+    private String mediaType; //тип файла
     @Lob
-    byte[] data; // файл в базе данных
+    private byte[] data; // файл в базе данных
     @OneToOne
-    Student student;
+    private Student student;
 
 
     public Long getId() {

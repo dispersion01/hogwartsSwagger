@@ -22,11 +22,9 @@ import java.util.Optional;
 @RestController
 @RequestMapping("avatar")
 public class AvatarController {
-    private final StudentService studentService;
     private final AvatarService avatarService;
 
-    public AvatarController(StudentService studentService, AvatarService avatarService) {
-        this.studentService = studentService;
+    public AvatarController(AvatarService avatarService) {
         this.avatarService = avatarService;
     }
 

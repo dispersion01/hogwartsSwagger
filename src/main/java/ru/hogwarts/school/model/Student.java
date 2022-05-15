@@ -11,13 +11,13 @@ public class Student {
     private String name;
     private int age;
 
-    @ManyToOne
-    @JoinColumn(name = "faculty_id")
+    @ManyToOne(optional = true)
+    @JoinColumn(name = "faculty_id", referencedColumnName = "id")
     private Faculty faculty;
 
-    @OneToOne
-    @JoinColumn(name = "student_id")
-    private Avatar avatar;
+/*    @OneToOne
+    @JoinColumn(name = "student_Id")
+    private Avatar avatar;*/
 
     public Student(Long id, String name, int age) {
 

@@ -8,5 +8,5 @@ import ru.hogwarts.school.model.Student;
 import java.util.Optional;
 
 public interface AvatarRepository extends JpaRepository<Avatar,Long> {
-    Avatar findByStudent_Id(Long id);
+    Avatar findByStudentId(Long id);
 }
