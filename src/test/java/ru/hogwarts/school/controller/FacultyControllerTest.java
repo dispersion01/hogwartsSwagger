@@ -48,7 +48,7 @@ class FacultyControllerTest {
         JSONObject studentObject = new JSONObject();
         studentObject.put("name faculty one", name);
 
-       Student student = new Student();
+        Student student = new Student();
         student.setId(id);
         student.setName(name);
 
