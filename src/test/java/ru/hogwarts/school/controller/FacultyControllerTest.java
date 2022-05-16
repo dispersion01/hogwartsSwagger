@@ -16,6 +16,7 @@ import ru.hogwarts.school.model.Student;
 import ru.hogwarts.school.repositories.StudentRepository;
 import ru.hogwarts.school.service.StudentService;
 
+import javax.swing.*;
 import java.util.Optional;
 
 import static org.junit.jupiter.api.Assertions.*;
@@ -39,12 +40,13 @@ class FacultyControllerTest {
     private StudentController studentController;
 
     @Test
-    public void saveUserTest() throws Exception {
+    public void testGetStudent() throws Exception {
         Long id = 1L;
         String name = "name faculty one";
+        String color = "red";
 
-        JSONObject userObject = new JSONObject();
-        userObject.put("name faculty one", name);
+        JSONObject studentObject = new JSONObject();
+        studentObject.put("name faculty one", name);
 
        Student student = new Student();
         student.setId(id);
@@ -54,8 +56,8 @@ class FacultyControllerTest {
         when(studentRepository.findById(any(Long.class))).thenReturn(Optional.of(student));
 
         mockMvc.perform(MockMvcRequestBuilders
-                        .post("/user") //send
-                        .content(userObject.toString())
+                        .post("/student") //send
+                        .content(studentObject.toString())
                         .contentType(MediaType.APPLICATION_JSON)
                         .accept(MediaType.APPLICATION_JSON))
                 .andExpect(status().isOk()) //receive
