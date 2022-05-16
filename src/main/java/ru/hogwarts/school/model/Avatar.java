@@ -15,6 +15,7 @@ public class Avatar {
     @Lob
     private byte[] data; // файл в базе данных
     @OneToOne
+
     private Student student;
 
 

@@ -15,6 +15,9 @@ public class Student {
     @JoinColumn(name = "faculty_id", referencedColumnName = "id")
     private Faculty faculty;
 
+
+
+
 /*    @OneToOne
     @JoinColumn(name = "student_Id")
     private Avatar avatar;*/
