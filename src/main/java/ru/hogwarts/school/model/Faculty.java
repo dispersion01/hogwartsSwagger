@@ -1,5 +1,7 @@
 package ru.hogwarts.school.model;
 
+import org.springframework.beans.factory.annotation.Autowired;
+
 import javax.persistence.*;
 import java.util.Collection;
 import java.util.Objects;
@@ -15,10 +17,11 @@ public class Faculty {
 @OneToMany (mappedBy = "faculty")
     private Collection<Student> student;
 
-    public Faculty(Long id, String name, String color) {
+    public Faculty(Long id, String name, String color, Collection<Student> student) {
         this.id = id;
         this.name = name;
         this.color = color;
+        this.student = student;
     }
 
     public Faculty() {
