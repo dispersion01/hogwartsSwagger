@@ -11,16 +11,10 @@ public class Student {
     private String name;
     private int age;
 
-    @ManyToOne(optional = true)
+    @ManyToOne
     @JoinColumn(name = "faculty_id", referencedColumnName = "id")
     private Faculty faculty;
 
-
-
-
-/*    @OneToOne
-    @JoinColumn(name = "student_Id")
-    private Avatar avatar;*/
 
     public Student(Long id, String name, int age) {
 
