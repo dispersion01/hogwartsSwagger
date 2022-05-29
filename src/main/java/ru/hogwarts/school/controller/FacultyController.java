@@ -11,6 +11,7 @@ import java.util.Optional;
 @RestController
 @RequestMapping("faculty")
 public class FacultyController {
+
     private final FacultyService facultyService;
 
 
@@ -20,6 +21,7 @@ public class FacultyController {
 
     @PostMapping
     public Faculty createFaculty(@RequestBody Faculty faculty) {
+
         return facultyService.createFaculty(faculty);
     }
 
