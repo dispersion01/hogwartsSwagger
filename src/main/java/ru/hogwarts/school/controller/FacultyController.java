@@ -52,5 +52,10 @@ public class FacultyController {
     ) {
         return facultyService.findByColorOrNameIgnoreCase(color, name);
     }
+
+    @GetMapping({"getFacultyLongName"})
+    public Optional<String> getFacultyLongName() {
+        return facultyService.getFacultyLongName();
+    }
 }
 

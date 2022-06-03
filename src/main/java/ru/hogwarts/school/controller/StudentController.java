@@ -6,6 +6,7 @@ import ru.hogwarts.school.model.Student;
 import ru.hogwarts.school.service.StudentService;
 
 import java.util.Collection;
+import java.util.List;
 import java.util.Optional;
 import java.util.OptionalDouble;
 
@@ -54,7 +55,7 @@ public class StudentController {
     }
 
     @GetMapping({"getStudentNameA"})
-    public Collection<Student> getStudentNameA() {
+    public List<String> getStudentNameA() {
         return studentService.getStudentNameA();
     }
     @GetMapping({"getStudentAverageAge"})

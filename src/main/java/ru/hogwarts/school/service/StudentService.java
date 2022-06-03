@@ -75,9 +75,12 @@ public class StudentService {
         return studentRepository.getFiveLastStudent();
     }
 
-    public List<Student> getStudentNameA() {
+    public List<String> getStudentNameA() {
         return studentRepository.findAll().stream()
-                .forEach(student -> student.getName().toUpperCase(Locale.getDefault()).startsWith("A"))
+                .map(Student::getName)
+                .map(String::toUpperCase)
+                .filter(studentRepository -> studentRepository.startsWith("A"))
+                .sorted()
                 .collect(Collectors.toList());
 
 
