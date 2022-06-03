@@ -4,10 +4,13 @@ import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.stereotype.Service;
 import ru.hogwarts.school.model.Faculty;
+import ru.hogwarts.school.model.Student;
 import ru.hogwarts.school.repositories.FacultyRepository;
 
 import java.util.Collection;
+import java.util.List;
 import java.util.Optional;
+import java.util.stream.Collectors;
 
 @Service
 public class FacultyService {
@@ -46,5 +49,13 @@ public class FacultyService {
     public Collection<Faculty> findByColorOrNameIgnoreCase(String color, String name) {
         logger.info("Was invoked method of get faculty by color or name");
       return   facultyRepository.findByColorOrNameIgnoreCase(color, name);
+    }
+
+    public List<Student> getFacultyLongName() {
+        return  facultyRepository.findAll().stream().parallel()
+                .mapToInt(faculty -> faculty.getName().length())
+                .max()
+                .collect(Collectors.toList();                ;
+
     }
 }

@@ -10,7 +10,7 @@ public class InfoService {
     public InfoService() {
     }
 
-    public InetAddress getPort(int serverPort) throws UnknownHostException {
+    public InetAddress getPort() throws UnknownHostException {
         return InetAddress.getLocalHost();
     }
 }

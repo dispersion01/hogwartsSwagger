@@ -8,8 +8,11 @@ import ru.hogwarts.school.interfaces.StudentsById;
 import ru.hogwarts.school.model.Student;
 import ru.hogwarts.school.repositories.StudentRepository;
 
-import java.util.Collection;
-import java.util.Optional;
+import java.util.*;
+import java.util.stream.Collectors;
+import java.util.stream.Stream;
+
+import static java.util.stream.DoubleStream.iterate;
 
 @Service
 public class StudentService {
@@ -41,8 +44,9 @@ public class StudentService {
         logger.info("Was invoked method for edit student");
         return studentRepository.save(student);
     }
+
     public void deleteStudent(long id) {
-       studentRepository.deleteById(id);
+        studentRepository.deleteById(id);
     }
 
     public Collection<Student> ageStudent(int age) {
@@ -51,21 +55,48 @@ public class StudentService {
         return studentRepository.findAll();
     }
 
-    public Collection<Student> findByAgeBetween(Integer min, Integer max){
+    public Collection<Student> findByAgeBetween(Integer min, Integer max) {
         logger.info("Was invoked method find student between min and max age");
         return studentRepository.findByAgeBetween(min, max);
     }
+
     public Collection<StudentsById> getStudentAmount() {
         logger.info("Was invoked method for get amount student");
         return studentRepository.getStudentById();
     }
-    public  Collection<StudentsById> getAverageAgeStudent() {
+
+    public Collection<StudentsById> getAverageAgeStudent() {
         logger.info("Was invoked method for get average student");
         return studentRepository.getAverageAgeStudent();
     }
-    public  Collection<StudentsById> getFiveLastStudent() {
+
+    public Collection<StudentsById> getFiveLastStudent() {
         logger.info("Was invoked method for get five last student");
         return studentRepository.getFiveLastStudent();
     }
 
+    public List<Student> getStudentNameA() {
+        return studentRepository.findAll().stream()
+                .forEach(student -> student.getName().toUpperCase(Locale.getDefault()).startsWith("A"))
+                .collect(Collectors.toList());
+
+
+    }
+
+    public OptionalDouble getStudentAverageAge() {
+        return studentRepository.findAll().stream()
+                .mapToInt(student -> student.getAge())
+                .average();
+    }
+
+    public Integer getIntegerNumber() {
+        int sum = Stream
+                .iterate(1, a -> a + 1)
+                .limit(1_000_000)
+                .reduce(0, (a, b) -> a + b);
+        return sum;
+    }
+
+
 }
+
