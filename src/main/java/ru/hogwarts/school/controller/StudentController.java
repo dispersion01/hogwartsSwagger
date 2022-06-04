@@ -6,7 +6,9 @@ import ru.hogwarts.school.model.Student;
 import ru.hogwarts.school.service.StudentService;
 
 import java.util.Collection;
+import java.util.List;
 import java.util.Optional;
+import java.util.OptionalDouble;
 
 @RestController
 @RequestMapping("student")
@@ -50,6 +52,15 @@ public class StudentController {
                                                 @RequestParam Integer max
     ) {
         return studentService.findByAgeBetween(min, max);
+    }
+
+    @GetMapping({"getStudentNameA"})
+    public List<String> getStudentNameA() {
+        return studentService.getStudentNameA();
+    }
+    @GetMapping({"getStudentAverageAge"})
+    public OptionalDouble getStudentAverageAge() {
+        return studentService.getStudentAverageAge();
     }
 
 }
