@@ -63,4 +63,13 @@ public class StudentController {
         return studentService.getStudentAverageAge();
     }
 
+    @GetMapping({"printAllStudent"})
+    public void printAllStudentParallelMethod() {
+        studentService.printAllStudentParallelMethod();
+    }
+
+    @GetMapping({"printAllStudentSyncMethod"})
+    public void printAllStudentSyncMethod() {
+         studentService.printAllStudentSyncMethod();
+    }
 }
