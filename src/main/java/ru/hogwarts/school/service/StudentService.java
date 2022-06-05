@@ -25,10 +25,13 @@ public class StudentService {
 
     Logger logger = LoggerFactory.getLogger(StudentService.class);
     private final StudentRepository studentRepository;
+    private final StudentService studentService;
 
-    public StudentService(StudentRepository studentRepository) {
+    public StudentService(StudentRepository studentRepository, StudentService studentService) {
         this.studentRepository = studentRepository;
+        this.studentService = studentService;
     }
+
 
     public Student createStudent(Student student) {
         logger.info("Was invoked method for create student");
@@ -100,6 +103,39 @@ public class StudentService {
         return sum;
     }
 
+    public void doName(int number) {
+        System.out.println(studentRepository.findAll() + " " + number);
+
+    }
+
+    public void printAllStudentParallelMethod() {
+        studentService.doName(1);
+        studentService.doName(2);
+        new Thread(() -> {
+            studentService.doName(3);
+            studentService.doName(4);
+        }).run();
+        studentService.doName(5);
+        studentService.doName(6);
+    }
+/*    public void  printAllStudentParallelMethod() {
+        System.out.println(studentRepository.findAll());
+        new Thread(() ->{
+            System.out.println(studentRepository.findAll());
+        }).run();
+        }*/
+
+
+    public synchronized void printAllStudentSyncMethod() {
+        studentService.doName(1);
+        studentService.doName(2);
+        new Thread(() -> {
+            studentService.doName(3);
+            studentService.doName(4);
+        }).run();
+        studentService.doName(5);
+        studentService.doName(6);
+    }
 
 }
 
